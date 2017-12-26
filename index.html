@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/mithril"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds/src-min/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds/src-min/ext-language_tools.js"></script>
+  <script src="https://cdn.datatables.net/v/dt/dt-1.10.16/cr-1.4.1/fc-3.2.3/fh-3.1.3/datatables.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bare-css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.16/cr-1.4.1/fc-3.2.3/fh-3.1.3/datatables.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
+  <link rel="stylesheet" href="index.css">
+  <link rel="shortcut icon" href="favicon.png">
+  <title>ButterSalted</title>
+</head>
+
+
+<body>
+<!-- navbar (subtle look) -->
+<nav>
+<label>
+<input type="checkbox">
+  <header>
+    <a href="#!/"><img src="favicon.png">ButterSalted</a>
+  </header>
+  <ul>
+    <li><a class="pipe" href="#!/pipe">Pipe</a></li>
+    <li><a class="food" href="#!/food">Food</a></li>
+    <li><a class="group" href="#!/group">Group</a></li>
+    <li><a class="fillin" href="#!/fillin">Fillin</a></li>
+    <li><a class="field" href="#!/field">Field</a></li>
+    <li><a class="unit" href="#!/unit">Unit</a></li>
+  </ul>
+</label>
+</nav>
+
+
+<main>
+<!-- 1. sql interface -->
+<section id="sql">
+<form>
+  <img id="logo" src="index.png" alt="ButterSalted">
+  <div style="height: 10rem;">
+    <div id="sql-value"></div>
+    <button type="submit" name="query" primary>ButterSalted Query</button>
+  </div>
+  <p txt="c">
+    <button type="submit" name="query" primary>ButterSalted Query</button>
+    <button type="submit" name="lucky">I'm feeling hungry</button>
+  </p>
+</form>
+</section>
+
+
+<!-- 2. pipe interface -->
+``<section id="pipe">
+<form>
+  <div class="inputs">
+  <fieldset>
+    <label>source</label>
+    <input list="sources" name="source" placeholder="Select a source, like: usda-ndb">
+  </fieldset>
+  <fieldset>
+    <label>start</label>
+    <input type="text" name="start" placeholder="Start id, like: 1">
+  </fieldset>
+  <fieldset>
+    <label>stop</label>
+    <input type="text" name="stop" placeholder="Stop id, like: 2">
+  </fieldset>
+  </div>
+  <p txt="c">
+    <button type="submit" value="get" primary>Read pipe</button>
+    <button type="submit" value="post">Write pipe</button>
+    <button type="reset">Reset</button>
+  </p>
+  <datalist id="sources">
+    <option value="myfitnesspal-foodcalories"></option>
+    <option value="nutritionvalue-searchall"></option>
+    <option value="usda-ndb">
+  </datalist>
+</form>
+</section>
+
+
+<!-- 3. food interface -->
+<section id="food">
+<form>
+  <div class="inputs"></div>
+  <p txt="c">
+    <button type="submit" value="select" primary>Search</button>
+    <button type="submit" value="insert">Add new</button>
+    <button type="submit" value="update">Update</button>
+    <button type="submit" value="delete">Delete</button>
+    <button type="reset">Reset</button>
+  </p>
+  <datalist id="fields"></datalist>
+</form>
+</section>
+
+
+<!-- 4. group interface -->
+<section id="group">
+<form>
+  <div class="inputs">
+  <fieldset>
+    <label>id</label>
+    <input type="text" name="id" placeholder="Name of group, like: flavour_chocolate">
+  </fieldset>
+  <fieldset>
+    <label>field</label>
+    <input type="text" name="field" placeholder="Name of field, like: flavour">
+  </fieldset>
+  <fieldset>
+    <label>value</label>
+    <input type="text" name="value" placeholder="Name of value, like: chocolate">
+  </fieldset>
+  <fieldset>
+    <label>query</label>
+    <input type="text" name="query" placeholder="SQL query, like: SELECT * FROM food WHERE Name LIKE '%chocolate%'">
+  </fieldset>
+  </div>
+  <p txt="c">
+    <button type="submit" value="select" primary>Search</button>
+    <button type="submit" value="insert">Add new</button>
+    <button type="submit" value="update">Update</button>
+    <button type="submit" value="delete">Delete</button>
+    <button type="reset">Reset</button>
+  </p>
+</form>
+</section>
+
+
+<!-- 5. fillin interface -->
+<section id="fillin">
+<form>
+  <div class="inputs">
+  <fieldset>
+    <label>id</label>
+    <input type="text" name="id" placeholder="Name of term, like: carbs">
+  </fieldset>
+  <fieldset>
+    <label>field</label>
+    <input type="text" name="field" placeholder="Field name, like: Carbohydrate, by difference">
+  </fieldset>
+  </div>
+  <p txt="c">
+    <button type="submit" value="select" primary>Search</button>
+    <button type="submit" value="insert">Add new</button>
+    <button type="submit" value="update">Update</button>
+    <button type="submit" value="delete">Delete</button>
+    <button type="reset">Reset</button>
+  </p>
+</form>
+</section>
+
+
+<!-- 6. field interface -->
+<section id="field">
+<form>
+  <div class="inputs">
+  <fieldset>
+    <label>id</label>
+    <input type="text" name="id" placeholder="Name of field, like: Vitamin A">
+  </fieldset>
+  <fieldset>
+    <label>type</label>
+    <input type="text" name="type" placeholder="SQL type of field, like: REAL">
+  </fieldset>
+  <fieldset>
+    <label>unit</label>
+    <input type="text" name="unit" placeholder="Storage unit of field, like: Vitamin A IU">
+  </fieldset>
+  </div>
+  <p txt="c">
+    <button type="submit" value="select" primary>Search</button>
+    <button type="submit" value="insert">Add new</button>
+    <button type="submit" value="update">Update</button>
+    <button type="submit" value="delete">Delete</button>
+    <button type="reset">Reset</button>
+  </p>
+</form>
+</section>
+
+
+<!-- 7. unit interface -->
+<section id="unit">
+<form>
+  <div class="inputs">
+  <fieldset>
+    <label>id</label>
+    <input type="text" name="id" placeholder="Name of unit, like: mg">
+  </fieldset>
+  <fieldset>
+    <label>factor</label>
+    <input type="text" name="factor" placeholder="Conversion factor to base unit, like: 0.001">
+  </fieldset>
+  <fieldset>
+    <label>offset</label>
+    <input type="text" name="offset" placeholder="Conversion offset to base unit, like: 0">
+  </fieldset>
+  </div>
+  <p txt="c">
+    <button type="submit" value="select" primary>Search</button>
+    <button type="submit" value="insert">Add new</button>
+    <button type="submit" value="update">Update</button>
+    <button type="submit" value="delete">Delete</button>
+    <button type="reset">Reset</button>
+  </p>
+</form>
+</section>
+
+
+<!-- 8. results interface -->
+<div id="ans">
+<table class="hover stripe order-column">
+  <thead></thead>
+  <tbody></tbody>
+</table>
+</div>
+</main>
+
+
+<footer>
+<grid>
+<div col="1/2">
+  <a href="#">Products</a>
+  <a href="#">Testing</a>
+  <a href="#">About</a>
+  <a href="#">Terms</a>
+</div>
+<div col="1/2" txt="r">
+  <a href="https://github.com/merferry/buttersalted/blob/master/README.md">Help</a>
+  <a href="#">Settings</a>
+</div>
+</grid>
+</footer>
+<script src="index.js"></script>
+</body>
+</html>

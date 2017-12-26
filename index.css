@@ -1,0 +1,141 @@
+/* 1. header cosmeticization */
+nav:not([class]) {
+  border: none;
+}
+nav:not([class]) label {
+  max-width: none;
+}
+nav:not([class]) header a,
+nav:not([class]) ul a {
+  font-family: 'Righteous', cursive;
+  font-weight: bolder;
+}
+body, input, textarea, select, button {
+  font-family: 'Righteous', cursive;
+}
+form label:not([class]) {
+  font-size: 1.4rem;
+}
+html:not([class]) header,
+html.sql:not(.query) header {
+  visibility: hidden;
+}
+html.pipe nav:not([class]) a.pipe,
+html.food nav:not([class]) a.food,
+html.group nav:not([class]) a.group,
+html.fillin nav:not([class]) a.fillin,
+html.field nav:not([class]) a.field,
+html.unit nav:not([class]) a.unit {
+  border-bottom: 4px solid black;
+}
+
+
+/* 2. main beautification */
+html:not(.query) main {
+  padding-top: 2rem;
+}
+html:not([class]) section,
+html.sql section:not(#sql),
+html.pipe section:not(#pipe),
+html.food section:not(#food),
+html.group section:not(#group),
+html.fillin section:not(#fillin),
+html.field section:not(#field),
+html.unit section:not(#unit) {
+  display: none;
+}
+form {
+  margin: auto;
+}
+html:not(.query) section form {
+  max-width: 70rem;
+}
+html.sql:not(.query) #sql form {
+  max-width: 90rem;
+}
+section:not([class]),
+html.query form {
+  max-width: none;
+}
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+input[mode=key] {
+  text-transform: uppercase;
+}
+html.query form fieldset {
+  display: inline-block;
+  width: 24%;
+}
+form p:not([class]):not([empty]) {
+  margin-top: 2rem;
+}
+#logo {
+  display: none;
+}
+html.sql:not(.query) #logo {
+  display: block;
+  margin: auto;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  width: 16rem;
+  height: 16rem;
+}
+@media (max-height: 32rem) {
+  #logo { margin-top: 0; }
+}
+#sql-value {
+  font-size: 1.44em;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+#sql-value ~ button {
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  margin: 3rem 2rem;
+}
+#ans th {
+  border-bottom: 4px solid #679;
+}
+#ans th, #ans td {
+  text-align: center;
+}
+html:not(.query) #sql-value ~ button,
+html.query #sql p,
+html:not(.query) #ans {
+  display: none;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  background: white;
+  z-index: 2;
+}
+.iziToast {
+  font-family: 'Righteous', cursive;
+}
+
+
+/* 3. footer sundarization */
+html {
+  height: 100%;
+}
+body {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 60px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  height: 60px;
+  max-width: none;
+}
+footer a {
+  padding: 0 1rem;
+}
